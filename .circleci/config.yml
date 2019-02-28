@@ -1,0 +1,29 @@
+version: 2
+jobs:
+    build-macos:
+        environment:
+            SHELL: bash
+        macos:
+            xcode: 9.2.0
+        steps:
+            - checkout
+            - run:
+                name: execute script
+                command: |
+                    echo "# this should fail"
+                    ./bin/test-script.sh
+                    echo "# this should pass"
+                    ./bin/test-script.sh -c 'print("something")'
+            - run:
+                name: expose output
+                command: |
+                    echo "# install log
+                    cat ./install.log
+                    echo "# error log"
+                    cat ./install.err.log
+workflows:
+    version: 2
+    build:
+        jobs:
+            - build-macos
+
