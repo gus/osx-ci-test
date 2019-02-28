@@ -10,8 +10,8 @@ jobs:
             - run:
                 name: execute script
                 command: |
-                    echo "# this should fail"
-                    ./bin/test-script.sh
+                    #echo "# this should fail"
+                    #./bin/test-script.sh
                     echo "# this should pass"
                     ./bin/test-script.sh -c 'print("something")'
             - run:
